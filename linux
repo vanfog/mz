@@ -1,0 +1,475 @@
+Linux server 
+
+Instalace a nastavení 
+
+Hlavně nezapomenout zaškrtnout skip Unattended Instalation 
+
+ 
+
+Povolit si další síťové karty a nastavit víc prosecoru. 
+
+NAT 
+
+Vnitřní síť  
+
+Pouze s hostem 
+
+Případně nastavit iso ze kterého bude číst Ubuntu 
+
+Obsah obrázku text, software, Multimediální software, Grafický software
+
+Popis byl vytvořen automaticky 
+
+ 
+
+Vybrat install ubuntu 
+
+Vybrat klávesnici 
+
+A vybrat minimální instalaci 
+
+Vybrat somtehing else aby bylo možné rozdělit disk podle svého uvážení 
+
+Obsah obrázku text, Písmo, snímek obrazovky
+
+Popis byl vytvořen automaticky 
+
+Vytvoření tabulky oddílů rozdělení disku  
+
+Vybrat new partition table  
+
+ 
+
+A disk rozdělit následovně kliknutím na free space a na plusko: 
+
+Obsah obrázku text, snímek obrazovky, Písmo, řada/pruh
+
+Popis byl vytvořen automaticky 
+
+Vytvoření nových uživatelů 
+
+Useradd -Přidání nového uživatele 
+
+Prvně se přepnout do root sudo -i nebo používat sudo 
+
+Př useradd -d /admin/data -s /bin/bash admin 
+-d	vytvoří složku někde jinde kde chceme podle zadané cesty např. /admin/data 
+
+-s	nastaví skel /bin/bash 
+
+Kouknout se zda vznikl user pomocí ls / 
+
+Pokud složka nevznikla pomocí mkdir si ju vytvořím s přepínačem -p 
+
+mkdir -p /admin/data 
+
+Obsah obrázku text, snímek obrazovky, Písmo
+
+Popis byl vytvořen automaticky 
+
+Pomocí příkazu nano /etc/passwd zkontrolovat, zda proběhlo správné vytvoření účtu (bude to ke konci souboru)  
+
+ 
+
+Chybí zde plně kvalifikované jméno které si dopíšeme Linux Administrator nebo ho lze přidat přepínačem -c 
+
+Nakopírování /etc/skel do adresáře /admin/data 
+
+Pomocí příkazu cp 
+
+ 
+
+-R jako rekurzivní 
+
+Zkontrolujeme jak vypadá složka admina pomocí cd a ll 
+
+ 
+
+Oprávnění 
+
+Zajistit aby v tomto adresáři může pracovat pouze admin 
+
+Vyselektovat domocský adresář pomocí ll / 
+
+Vlézt si do admin ll /admin 
+
+Obsah obrázku text, Písmo, snímek obrazovky
+
+Popis byl vytvořen automaticky 
+
+Uživatel root a skupina root má oprávnění 
+
+Převedení vlastnění složky na admina  
+
+Pomocí chown 
+
+O krok zpět z adresáře Cd ..  
+
+Obsah obrázku text, Písmo, snímek obrazovky
+
+Popis byl vytvořen automaticky 
+
+ 
+
+#Odepření přístupu pomocí chmod 
+
+Obsah obrázku text, snímek obrazovky, Písmo
+
+Popis byl vytvořen automaticky 
+
+Udělat aby byl administrátorem 
+
+Pomocí editace /etc/group editace pomocí nano /etc/group 
+
+Přidat do skupin jméno admin např.  
+
+Jiný způsob vytvoření uživatele adduser 
+
+Obsah obrázku text, snímek obrazovky, Písmo
+
+Popis byl vytvořen automaticky 
+
+Vytvoření nové skupiny 
+
+Pomocí groupadd delon 
+
+Přidáni uživatele do skupiny zase pomocí editace  
+
+Nano /etc/group 
+
+Zkontrolovat jestli vše sedí pomocí nano /etc/passwd 
+
+Nastaveni hesla pro uživatele 
+
+Pomocí passwd např.  
+
+Pro uživatele admin 
+
+S daty bude moc pracovat pouze konkrétní uživatel a ostatní je budou moci číst 
+
+Skočíme si do home a koukneme se co v tom je 
+
+ 
+
+Změníme skupinu pomocí chgrp 
+
+Obsah obrázku text, snímek obrazovky, Písmo
+
+Popis byl vytvořen automaticky 
+
+Změna skupiny delon u alana 
+
+Obsah obrázku text, snímek obrazovky, Písmo
+
+Popis byl vytvořen automaticky 
+
+7 může vše 
+
+4 pouze číst 
+
+0 nemůže nic 
+
+Zkouška jestli to celé funguje 
+
+Opusti root pomocí exit 
+
+Příkaz su admin a zadat heslo 
+
+Obsah obrázku text, snímek obrazovky, Písmo
+
+Popis byl vytvořen automaticky 
+
+Přejetí do domovského adresáře pomocí cd~ (vlnovka levý alt 126 nebo levý alt + A) 
+
+A pwd Obsah obrázku text, Písmo, snímek obrazovky
+
+Popis byl vytvořen automaticky zda je to nastavené dobře 
+
+Vytvoření souboru 
+
+Pomocí nano test.sh 
+
+Překopírování složky dokument z domovského adresáře do složky temp do kořenového adresáře 
+
+Cp pro kopírování 
+
+-R Při kopírování adresářů 
+
+ 
+
+~/ domovský adresář  
+
+/tmp kořenový adresář 
+
+Ukončení procesu s pidem pid nebo pidem 15658 
+
+Příkaz kill pro ukončení procesu  
+
+Alternativa: kill -9 15658 
+
+Vytvoření složky skript v domovském adresáři 
+
+Pomocí mkdir 
+
+ 
+
+Vytvoření v domovském adresáři soubor a nastavení oprávnění pro spuštění vlastníka a skupin 
+
+Pomocí příkaz touch a chmod 
+
+U jako vlastník 
+
++x jako přidat pro test.sh 
+
+ 
+
+Otevřít si nové okno termináli pomocí mkdir udělat adresář test a u něj odebrat oprávnění např chmod go-x test 
+
+G jako pro skupinu skupiny 
+
+O jako other 
+
+-x odbrat  
+
+ 
+
+Změna vlastníka souboru na nějakého uživatele 
+
+Pomocí příkaz chown 
+
+Alan = uživatel 
+
+ 
+
+Výpis všech aktuálně běžících procesů 
+
+Pomocí ps -A 
+
+-A jako ALL (všechny) 
+
+Pomocí programu cron nastavení automatického uložení skriptu určitý den a hodinu 
+
+Pomocí crontab -e 
+
+-e jako edituj 
+
+Editace tabulky cronu 
+
+Vybrat pomocí jakého editoru chceme editovat nejjednoduší je nano = 1 
+
+ 
+
+Jak to jde postupně: Minuty, hodiny, den v mesíci, měsíc, den v týdnu 
+
+0 = minut 
+
+1 = v jednu hodinu  
+
+* = libovolný 
+
+Důležité je kde je soubor uložený 
+
+Instalování programů a připravení prostředí pro java aplikace 
+
+Nejprve sudo apt update 
+
+Instalace z defaultních repozitářů  
+
+Inkscape pro vytváření vektorových obrázků 
+
+ 
+
+Install pomocí snap 
+
+ 
+
+Pomocí apt search openjdk možnost vyhledat balíčky 
+
+A pak jen napsta apt install a hlavičku balíčku pro jeho instalaci 
+
+A nebo normálně v prohlížeči na stránkách bellsowftu 
+
+a potom poomocí dpkg -p a název staženého souboru 
+
+a nebo stáhnout pomocí toho obchodu v ubuntu tu IntelliJ 
+
+Instalace služby DHCP a DNS 
+
+DHCP 
+
+Pomocí příkazu apt install isc-dhcp-server 
+
+ 
+
+Konfigurace přidělování adres vlastního subnetu pro privátní sítě v rozsahu 5O zařízení 
+
+Budeme konfigurovat nano /etc/dhcp/dhcpd.conf 
+
+Odkomentovat si tuto část 
+
+ 
+
+Pomocí kalkulačky počítaní subnetů si najdu daný rozsah na masku aby se vešli uživatelé 192 = 62 užvatelů 
+
+ 
+
+Range = rozsah 
+
+ 
+Rezervace na fyzického hosta 
+
+Pozor abychom byly root jinak se změny nebudou moci zapsat nebo použít sudo 
+
+Pouze přepíšme tohoto hosta 
+
+
+Na 
+
+Obsah obrázku text, snímek obrazovky, Písmo
+
+Popis byl vytvořen automaticky 
+
+Pomocí 
+
+ 
+Se podívat z jakého interface to má chodit 
+
+Pomocí ip a v nové záložce terminálu se kouknout jaké tam jsou interface který nemá žádnou konfiguraci pro vnitřní síť 
+
+ 
+
+A napsat ho do interface  
+
+Na jaké adrese má naslouchat interface 
+
+Nastavení ip adresy daného stroje 
+
+Pomocí ip a a 192.168.66.60/26 dev enp0s8 
+
+Poslední číslo podle nastaveného rozsahu  
+
+ 
+
+Kontorola jestli dhcp běží 
+
+ 
+Jestli neběží tak pomocí service isc-dhcp-server start 
+
+DNS 
+
+Pomocí příkazu apt install bind9 
+
+
+Podíváme se na dns pomocí service bind9 status 
+
+Vytvoření autorativní dns 
+
+Budeme spravovat svou vlastní zónu¨ 
+
+Podíváme se na defaultní zóny přejdeme si do adresáře /etc/bind 
+
+A pomocí cat named.conf.default-zones 
+
+Uděláme to pomocí vytvoření svojí vlastní zóny 
+
+
+Zkopírurju si localhost zone a vytvoříme si nový soubor 
+
+Např sudo nano.conf.udelatko.net 
+
+
+Teď soubor musíme přidat na named.conf 
+
+
+A teď vytvoříme soubor udelatko.net 
+
+
+Podívám se pomocí ls 
+
+Vykopírujeme jeden z těch souborů např. db.local protože to předvyplní tu kostru 
+
+ 
+
+A upravíme ho podle svého např 
+
+
+Potom restartujeme bind9 pomocí service bind9 restart 
+
+Zobrazení stavu jednotlivých služeb 
+
+Service isc-dhcp-server status 
+
+service bind9 status 
+
+service cron status 
+
+ 
+
+Instalace Lamp serveru 
+
+apt install tasksel 
+
+jen do terminálu napíšeme tasksel 
+
+web server 
+
+mezerníkem vybrat 
+
+Přejít na tuto cestu  
+
+A zkopírovat ze souboru 000-default.conf do udelatko.net.conf 
+
+Cp 000-default.conf udelatko.net.conf 
+
+Pak ho zeditovat 
+
+ 
+
+Vytvoři ten adresář tady to je mujweb 
+
+Vlést si do něj a vytvořit soubor např index.html něco do něj napsat 
+
+Povolení sítě 
+
+ 
+
+A pak pouze reloudnout nebo restartovat 
+
+Malá úprava 
+
+ 
+
+Upravení oprávnění pro vstup do složky 
+
+Když je error 403 
+
+Přejít do 
+ 
+
+A založit nový soubor udelatko.conf 
+
+A napsat do něj 
+
+Obsah obrázku text, Písmo, snímek obrazovky
+
+Popis byl vytvořen automaticky 
+
+A povolíme ho 
+
+ 
+
+Spřístupnění webového obsahu 
+
+Obsah obrázku text, Písmo, snímek obrazovky
+
+Popis byl vytvořen automaticky 
+
+Dopsat require a web mi měl fungovat normálně 
+
+ 
+
+ 
+
+ 
+
+ 
